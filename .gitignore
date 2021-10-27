@@ -1,0 +1,5 @@
+*.git
+/storage
+/storage/*
+/uploads
+/uploads/*

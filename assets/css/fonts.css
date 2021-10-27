@@ -1,0 +1,17 @@
+/****** Telugu Fonts *******/
+
+  /**** MALLANNA *****/
+  @font-face {  
+    font-family: "Mallanna-Regular";  
+    src: url("./fonts/Mallanna-Regular.ttf" ); /* IE */  
+    src: local("Mallanna-Regular"), url("./fonts/Mallanna-Regular.ttf") format("truetype"); /*non-IE*/  
+  }
+
+  /**** RAMA BHADRA *****/
+  @font-face {  
+    font-family: "Ramabhadra-Regular";  
+    src: url("./fonts/Ramabhadra-Regular.ttf" ); /* IE */  
+    src: local("Ramabhadra-Regular"), url("./fonts/Ramabhadra-Regular.ttf") format("truetype"); /*non-IE*/  
+  }
+
+/***************************/
