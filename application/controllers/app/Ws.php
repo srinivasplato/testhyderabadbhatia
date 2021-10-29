@@ -7538,9 +7538,8 @@ if(empty($checkQuestionOrderId)){
             }
 
         }
-        $response = $this
-            ->ws_model
-            ->data_analysis_allUsers($user_id, $course_id, $category_id, $quiz_id);
+
+       // $response = $this->ws_model->data_analysis_allUsers($user_id, $course_id, $category_id, $quiz_id);
 
         // var_dump($response);die();
         //echo '<pre>';print_r($response);exit;
