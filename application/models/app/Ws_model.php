@@ -10600,8 +10600,38 @@ function getBookMarkCount($quiz_id, $user_id){
 }
 
 
+ function  getMarks1($quiz_id, $user_id){
 
+    $query="(SELECT 
+        a.*,u.name,u.image, RANK() OVER (PARTITION BY quiz_id ORDER BY marks DESC ) marks_rank
+    FROM
+        test_series_marks a INNER JOIN users u ON u.id=a.user_id
+        where a.quiz_id=$quiz_id
+     ORDER BY marks desc limit 10 )
+     
+       UNION  
+     (
+     select A.* from
+     (SELECT 
+        a.*,u.name,u.image, RANK() OVER (PARTITION BY quiz_id ORDER BY marks DESC ) marks_rank
+    FROM
+        test_series_marks a INNER JOIN users u ON u.id=a.user_id
+        where a.quiz_id=$quiz_id
+     ORDER BY marks desc)A
+     where user_id=$user_id
+         )";
+        $res=$this->db->query($query)->result_array();
+
+        return $res;
+ }
   
+  function getUserCountByQuiz($quiz_id){
+
+    $query="select count(id) as user_count from test_series_marks where quiz_id=$quiz_id";
+    //echo $query;exit;
+    $res=$this->db->query($query)->row_array();
+    return  $res['user_count'];
+  }
 
 	 
 	    function getMarks($quiz_id, $user_id)

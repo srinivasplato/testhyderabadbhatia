@@ -7547,12 +7547,10 @@ if(empty($checkQuestionOrderId)){
 
         $getMarks = $this
             ->ws_model
-            ->getMarks($quiz_id, $user_id);
+            ->getMarks1($quiz_id, $user_id);
         $get_bookMarkCount=$this->ws_model->getBookMarkCount($quiz_id, $user_id);
-//var_dump($getMarks );die();
-//echo json_encode($getMarks );die();
-//echo '<pre>';print_r($getMarks);exit;
-        usort($getMarks, function ($a, $b)
+
+       /* usort($getMarks, function ($a, $b)
         {
 
             return $a['marks']<=>$b['marks'];
@@ -7597,40 +7595,20 @@ if(empty($checkQuestionOrderId)){
             $getMarks[$i]['wrong']=(string)$wrong;
             //$getMarks[$i]['total_questions']=(string)$total_questions;
             $getMarks[$i]['total_questions']=$this->wssub_model->getQuizTotalMarks($course_id, $category_id, $quiz_id);
-            /*foreach ($response as $value)
-            {
-
-                if ($value['user_id'] == $getMarks[$i]['user_id'])
-                {
-
-                    $getMarks[$i][$value['answer_status']] = $value['count'];
-
-                }
-
-            }*/
+           
 
         }
 
         $getMarks[$i]['rank'] = $rank;
-       // $getMarks[$i]['rank'] = '--';
-//echo '<pre>';print_r($getMarks);exit;
-        /*foreach ($response as $value)
-        {
-
-            if ($value['user_id'] == $getMarks[$i]['user_id'])
-            {
-
-                $getMarks[$i][$value['answer_status']] = $value['count'];
-
-            }
-
-        }*/
-
-        for ($i = 0;$i < $user_count;$i++)
+       
+*/
+        for ($i = 0;$i < count($getMarks);$i++)
         {
             //unset($getMarks[$i]['total_questions']);
            //$getMarks[$i]['total_questions'] = $getMarks[$i]['correct_answer_count'] + $getMarks[$i]['wrong_answer_count'] + $getMarks[$i]['guessed_correct_answer_count'] + $getMarks[$i]['guessed_wrong_answer_count'] + $getMarks[$i]['skipped'];
 
+            $getMarks[$i]['rank'] = $getMarks[$i]['marks_rank'] ;
+            
             if ($getMarks[$i]['user_id'] == $user_id)
             {
 
@@ -7640,9 +7618,9 @@ if(empty($checkQuestionOrderId)){
 
         }
 
-        $getMarks = array_slice($getMarks, 0, 10);
+        // $getMarks = array_slice($getMarks, 0, 10);
         $userDetails['bookmarkcount']=$get_bookMarkCount['bookmarkcount'];
-
+        $user_count = $this->ws_model->getUserCountByQuiz($quiz_id);
         $response = array(
             'status' => true,
 
