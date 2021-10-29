@@ -7602,13 +7602,15 @@ if(empty($checkQuestionOrderId)){
         $getMarks[$i]['rank'] = $rank;
        
 */
+        $total_questions=$this->ws_model->getQuizTotalQuestions($quiz_id);
         for ($i = 0;$i < count($getMarks);$i++)
         {
             //unset($getMarks[$i]['total_questions']);
            //$getMarks[$i]['total_questions'] = $getMarks[$i]['correct_answer_count'] + $getMarks[$i]['wrong_answer_count'] + $getMarks[$i]['guessed_correct_answer_count'] + $getMarks[$i]['guessed_wrong_answer_count'] + $getMarks[$i]['skipped'];
 
-            $getMarks[$i]['rank'] = $getMarks[$i]['marks_rank'] ;
-            
+            $getMarks[$i]['rank'] = (int)$getMarks[$i]['marks_rank'];
+            $getMarks[$i]['total_questions'] = $total_questions;
+
             if ($getMarks[$i]['user_id'] == $user_id)
             {
 
@@ -7628,7 +7630,7 @@ if(empty($checkQuestionOrderId)){
 
             'userDetails' => $userDetails,
 
-            'user_count' => $user_count,
+            'user_count' => (int)$user_count,
 
             'getMarks' => $getMarks
 
