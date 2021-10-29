@@ -10633,12 +10633,24 @@ function getBookMarkCount($quiz_id, $user_id){
     return  $res['user_count'];
   }
 
+
+
+  function getQuizTotalMarks($quiz_id){
+    $query="select sum(positive_marks) as total_marks from test_series_questions where quiz_id=$quiz_id ";
+    //echo $query;exit;
+    $res=$this->db->query($query)->row_array();
+    return  $res['total_marks'];
+  }
+  
+
   function getQuizTotalQuestions($quiz_id){
     $query="select questions_count from test_series_quiz where id=$quiz_id";
+
     //echo $query;exit;
     $res=$this->db->query($query)->row_array();
     return  $res['questions_count'];
   }
+
 
 	 
 	    function getMarks($quiz_id, $user_id)
