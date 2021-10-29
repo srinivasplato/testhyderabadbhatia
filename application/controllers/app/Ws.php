@@ -7538,19 +7538,19 @@ if(empty($checkQuestionOrderId)){
             }
 
         }
-        
-
         $response = $this
             ->ws_model
             ->data_analysis_allUsers($user_id, $course_id, $category_id, $quiz_id);
 
         // var_dump($response);die();
-       // echo '<pre>';print_r($response);exit;
+        //echo '<pre>';print_r($response);exit;
 
         $getMarks = $this
             ->ws_model
             ->getMarks($quiz_id, $user_id);
         $get_bookMarkCount=$this->ws_model->getBookMarkCount($quiz_id, $user_id);
+//var_dump($getMarks );die();
+//echo json_encode($getMarks );die();
 //echo '<pre>';print_r($getMarks);exit;
         usort($getMarks, function ($a, $b)
         {
@@ -7563,6 +7563,8 @@ if(empty($checkQuestionOrderId)){
 
         $rank = 1;
         $user_count = sizeof($getMarks);
+//var_dump( $user_count);die();
+	//echo $user_count; die();
 
         for ($i = 0;$i < $user_count-1;$i++)
         {

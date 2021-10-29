@@ -4749,6 +4749,7 @@ public function get_qbank_quiz(){
 public function update_test_series_questions()
 {
 
+	
 	$data = array(
 		'course_id' => $this->input->post('course_id'),
 		'category_id' => $this->input->post('category_id'),
@@ -4767,7 +4768,6 @@ public function update_test_series_questions()
 		'math_library'=>$this->input->post('math_library'),
 
 	);
-
 	/*if($_FILES['questionimage']['name']!=""){
 		$config['upload_path']          = './storage/pdfs';
 		$config['allowed_types']        = 'jpg|png|gif|jpeg';

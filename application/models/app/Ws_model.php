@@ -10566,7 +10566,6 @@ public function check_bookmarkStatus($course_id,$subject_id,$topic_id,$qbank_top
             ->get('test_series_answers');
 
 
-
         if ($marks->num_rows() > 0)
 
 
@@ -10600,7 +10599,12 @@ function getBookMarkCount($quiz_id, $user_id){
     return $result;
 }
 
-    function getMarks($quiz_id, $user_id)
+
+
+  
+
+	 
+	    function getMarks($quiz_id, $user_id)
 
     {
 
@@ -10610,7 +10614,7 @@ function getBookMarkCount($quiz_id, $user_id){
 
             ->db
 
-            ->order_by('tsm.id', 'desc');
+            ->order_by('tsm.correct_marks', 'desc');
 
 
 
@@ -10619,16 +10623,22 @@ function getBookMarkCount($quiz_id, $user_id){
             ->db
 
             ->where('tsm.quiz_id', $quiz_id);
+	
+
+
+
+        $this->db->where('tsm.user_id', $user_id);
 
 
         $this->db->join('users u','u.id=tsm.user_id');
         $this->db->distinct();
         $this->db->select('tsm.*,u.name,u.image');
         $this->db->from('test_series_marks tsm');
-
+	//$this->db->limit(10);	
         $marks = $this->db->get();
 
-//echo $this->db->last_query();exit;
+	 
+	//echo $this->db->last_query();exit;
 
         if ($marks->num_rows() > 0)
 
@@ -10642,7 +10652,7 @@ function getBookMarkCount($quiz_id, $user_id){
 
 
 
-            return $res;
+           return $res;
 
 
 
